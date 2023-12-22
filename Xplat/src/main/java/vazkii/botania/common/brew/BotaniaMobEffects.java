@@ -23,6 +23,7 @@ public class BotaniaMobEffects {
 	public static final MobEffect soulCross = new SoulCrossMobEffect();
 	public static final MobEffect featherfeet = new FeatherfeetMobEffect();
 	public static final MobEffect emptiness = new EmptinessMobEffect();
+	public static final MobEffect silence = new SilenceMobEffect();
 	public static final MobEffect bloodthrst = new BloodthirstMobEffect();
 	public static final MobEffect allure = new AllureMobEffect();
 	public static final MobEffect clear = new AbsolutionMobEffect();
@@ -31,6 +32,7 @@ public class BotaniaMobEffects {
 		r.accept(soulCross, prefix(LibPotionNames.SOUL_CROSS));
 		r.accept(featherfeet, prefix(LibPotionNames.FEATHER_FEET));
 		r.accept(emptiness, prefix(LibPotionNames.EMPTINESS));
+		r.accept(silence, prefix(LibPotionNames.SILENCE));
 		r.accept(bloodthrst, prefix(LibPotionNames.BLOODTHIRST));
 		r.accept(allure, prefix(LibPotionNames.ALLURE));
 		r.accept(clear, prefix(LibPotionNames.CLEAR));

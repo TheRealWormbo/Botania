@@ -185,7 +185,7 @@ public class BotaniaFlowerBlocks {
 	public static final Block orechidIgnem = createSpecialFlowerBlock(MobEffects.FIRE_RESISTANCE, 600, FLOWER_PROPS, () -> BotaniaFlowerBlocks.ORECHID_IGNEM);
 	public static final Block orechidIgnemFloating = new FloatingSpecialFlowerBlock(FLOATING_PROPS, () -> BotaniaFlowerBlocks.ORECHID_IGNEM);
 
-	public static final Block labellia = createSpecialFlowerBlock(MobEffects.FIRE_RESISTANCE, 600, FLOWER_PROPS, () -> BotaniaFlowerBlocks.LABELLIA);
+	public static final Block labellia = createSpecialFlowerBlock(BotaniaMobEffects.silence, 20, FLOWER_PROPS, () -> BotaniaFlowerBlocks.LABELLIA);
 	public static final Block labelliaFloating = new FloatingSpecialFlowerBlock(FLOATING_PROPS, () -> BotaniaFlowerBlocks.LABELLIA);
 
 	public static final BlockEntityType<PureDaisyBlockEntity> PURE_DAISY = XplatAbstractions.INSTANCE.createBlockEntityType(PureDaisyBlockEntity::new, pureDaisy, pureDaisyFloating);

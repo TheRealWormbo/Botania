@@ -42,6 +42,7 @@ public class BotaniaBrews {
 	public static final Brew soulCross = make(10000, new MobEffectInstance(BotaniaMobEffects.soulCross, 1800, 0));
 	public static final Brew featherfeet = make(7000, new MobEffectInstance(BotaniaMobEffects.featherfeet, 1800, 0));
 	public static final Brew emptiness = make(30000, new MobEffectInstance(BotaniaMobEffects.emptiness, 7200, 0));
+	public static final Brew silence = make(15000, new MobEffectInstance(BotaniaMobEffects.silence, 1800, 0)); // TODO: disallow pendant/incense?
 	public static final Brew bloodthirst = make(20000, new MobEffectInstance(BotaniaMobEffects.bloodthrst, 7200, 0));
 	public static final Brew overload = new Brew(0x232323, 12000, new MobEffectInstance(MobEffects.DAMAGE_BOOST, 1800, 3), new MobEffectInstance(MobEffects.MOVEMENT_SPEED, 1800, 2), new MobEffectInstance(MobEffects.WEAKNESS, 3600, 1), new MobEffectInstance(MobEffects.HUNGER, 200, 2));
 	public static final Brew clear = make(4000, new MobEffectInstance(BotaniaMobEffects.clear, 0, 0));
@@ -65,6 +66,7 @@ public class BotaniaBrews {
 		r.accept(soulCross, prefix(LibBrewNames.SOUL_CROSS));
 		r.accept(featherfeet, prefix(LibBrewNames.FEATHER_FEET));
 		r.accept(emptiness, prefix(LibBrewNames.EMPTINESS));
+		r.accept(silence, prefix(LibBrewNames.SILENCE));
 		r.accept(bloodthirst, prefix(LibBrewNames.BLOODTHIRST));
 		r.accept(allure, prefix(LibBrewNames.ALLURE));
 		r.accept(clear, prefix(LibBrewNames.CLEAR));
