@@ -189,6 +189,7 @@ public final class LibItemNames {
 	public static final String MANAWEAVE_LEGS = "manaweave_leggings";
 	public static final String MANAWEAVE_BOOTS = "manaweave_boots";
 	public static final String AUTOCRAFTING_HALO = "auto_crafting_halo";
+	public static final String CORPOREA_HALO = "corporea_halo";
 	public static final String GAIA_HEAD = "gaia_head";
 	public static final String SEXTANT = "sextant";
 	public static final String SPEED_UP_BELT = "speed_up_belt";

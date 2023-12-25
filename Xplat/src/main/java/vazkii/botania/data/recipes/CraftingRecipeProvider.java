@@ -1837,6 +1837,16 @@ public class CraftingRecipeProvider extends BotaniaRecipeProvider {
 		slabShape(BotaniaBlocks.corporeaBrickSlab, BotaniaBlocks.corporeaBrick).save(consumer);
 		stairs(BotaniaBlocks.corporeaBrickStairs, BotaniaBlocks.corporeaBrick).save(consumer);
 		wallShape(BotaniaBlocks.corporeaBrickWall, BotaniaBlocks.corporeaBrick, 6).save(consumer);
+
+		ShapedRecipeBuilder.shaped(RecipeCategory.TOOLS, BotaniaItems.corporeaHalo)
+				.define('P', BotaniaItems.manaPearl)
+				.define('C', BotaniaBlocks.corporeaIndex)
+				.define('I', BotaniaTags.Items.INGOTS_MANASTEEL)
+				.pattern(" P ")
+				.pattern("ICI")
+				.pattern(" I ")
+				.unlockedBy("has_item", conditionsFromItem(BotaniaBlocks.corporeaIndex))
+				.save(consumer);
 	}
 
 	private void registerLenses(Consumer<FinishedRecipe> consumer) {

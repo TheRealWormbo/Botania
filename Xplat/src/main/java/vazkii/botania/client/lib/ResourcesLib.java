@@ -73,6 +73,7 @@ public final class ResourcesLib {
 	public static final String MISC_HALO = PREFIX_MISC + "halo.png";
 	public static final String MISC_GLOW_GREEN = PREFIX_MISC + "glow0.png";
 	public static final String MISC_GLOW_CYAN = PREFIX_MISC + "glow1.png";
+	public static final String MISC_GLOW_PURPLE = PREFIX_MISC + "glow2.png";
 	public static final String MISC_BABYLON = PREFIX_MISC + "babylon.png";
 	public static final String MISC_SKYBOX = PREFIX_MISC + "skybox.png";
 	public static final String MISC_RAINBOW = PREFIX_MISC + "rainbow.png";
