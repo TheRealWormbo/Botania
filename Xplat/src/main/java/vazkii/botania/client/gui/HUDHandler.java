@@ -47,10 +47,7 @@ import vazkii.botania.common.block.block_entity.corporea.CorporeaIndexBlockEntit
 import vazkii.botania.common.block.block_entity.mana.ManaPoolBlockEntity;
 import vazkii.botania.common.handler.EquipmentHandler;
 import vazkii.botania.common.helper.PlayerHelper;
-import vazkii.botania.common.item.AssemblyHaloItem;
-import vazkii.botania.common.item.BotaniaItems;
-import vazkii.botania.common.item.WandOfTheForestItem;
-import vazkii.botania.common.item.WorldshaperssSextantItem;
+import vazkii.botania.common.item.*;
 import vazkii.botania.common.item.equipment.bauble.FlugelTiaraItem;
 import vazkii.botania.common.item.equipment.bauble.ManaseerMonocleItem;
 import vazkii.botania.common.item.equipment.bauble.RingOfDexterousMotionItem;
@@ -155,13 +152,13 @@ public final class HUDHandler {
 			profiler.pop();
 		}
 
-		if (!main.isEmpty() && main.getItem() instanceof AssemblyHaloItem) {
+		if (!main.isEmpty() && main.getItem() instanceof AbstractHaloItem) {
 			profiler.push("craftingHalo_main");
-			AssemblyHaloItem.Rendering.renderHUD(gui, mc.player, main);
+			AbstractHaloItem.Rendering.renderHUD(gui, mc.player, main);
 			profiler.pop();
-		} else if (!offhand.isEmpty() && offhand.getItem() instanceof AssemblyHaloItem) {
+		} else if (!offhand.isEmpty() && offhand.getItem() instanceof AbstractHaloItem) {
 			profiler.push("craftingHalo_off");
-			AssemblyHaloItem.Rendering.renderHUD(gui, mc.player, offhand);
+			AbstractHaloItem.Rendering.renderHUD(gui, mc.player, offhand);
 			profiler.pop();
 		}
 
