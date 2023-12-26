@@ -13,6 +13,7 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.util.RandomSource;
 import net.minecraft.util.Unit;
 import net.minecraft.world.entity.Entity;
+import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
@@ -21,6 +22,7 @@ import org.jetbrains.annotations.Nullable;
 
 import vazkii.botania.api.BotaniaFabricClientCapabilities;
 import vazkii.botania.api.block.WandHUD;
+import vazkii.botania.api.item.HaloRenderer;
 import vazkii.botania.api.item.TinyPotatoRenderCallback;
 import vazkii.botania.network.BotaniaPacket;
 import vazkii.botania.xplat.ClientXplatAbstractions;
@@ -46,6 +48,11 @@ public class FabricClientXplatImpl implements ClientXplatAbstractions {
 	@Override
 	public WandHUD findWandHud(Entity entity) {
 		return BotaniaFabricClientCapabilities.ENTITY_WAND_HUD.find(entity, Unit.INSTANCE);
+	}
+
+	@Override
+	public @Nullable HaloRenderer findHaloRenderer(ItemStack haloItem) {
+		return BotaniaFabricClientCapabilities.HALO_RENDERER.find(haloItem, Unit.INSTANCE);
 	}
 
 	@Override

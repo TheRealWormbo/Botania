@@ -19,6 +19,7 @@ import net.minecraft.world.item.crafting.RecipeSerializer;
 
 import vazkii.botania.api.block.FloatingFlower;
 import vazkii.botania.api.item.AncientWillContainer;
+import vazkii.botania.api.item.HaloRenderer;
 import vazkii.botania.api.mana.spark.SparkUpgradeType;
 import vazkii.botania.api.state.enums.CraftyCratePattern;
 import vazkii.botania.client.gui.bag.FlowerPouchContainer;
@@ -64,6 +65,7 @@ import java.util.LinkedHashMap;
 import java.util.Locale;
 import java.util.Map;
 import java.util.function.BiConsumer;
+import java.util.function.Function;
 
 import static vazkii.botania.common.lib.ResourceLocationHelper.prefix;
 
@@ -484,4 +486,13 @@ public final class BotaniaItems {
 				|| item instanceof RelicItem || item instanceof RelicBaubleItem;
 	}
 
+	@FunctionalInterface
+	public interface ICapConsumer<T> {
+		void accept(Function<ItemStack, T> factory, Item... types);
+	}
+
+	public static void registerHaloRendererCaps(ICapConsumer<HaloRenderer> consumer) {
+		consumer.accept(AssemblyHaloItem.AssemblyHaloRenderer::new, craftingHalo, autocraftingHalo);
+		consumer.accept(ReificationHaloItem.ReificationHaloRenderer::new, corporeaHalo);
+	}
 }

@@ -17,6 +17,8 @@ import net.minecraft.core.particles.ParticleOptions;
 import net.minecraft.core.particles.ParticleType;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraftforge.api.distmarker.Dist;
@@ -35,6 +37,7 @@ import net.minecraftforge.fml.event.lifecycle.FMLLoadCompleteEvent;
 import vazkii.botania.api.BotaniaAPI;
 import vazkii.botania.api.BotaniaForgeClientCapabilities;
 import vazkii.botania.api.block.WandHUD;
+import vazkii.botania.api.item.HaloRenderer;
 import vazkii.botania.api.mana.ManaBarTooltip;
 import vazkii.botania.client.BotaniaItemProperties;
 import vazkii.botania.client.core.handler.*;
@@ -154,6 +157,7 @@ public class ForgeClientInitializer {
 		ClientProxy.initSeasonal();
 		bus.addGenericListener(Entity.class, ForgeClientInitializer::attachEntityCapabilities);
 		bus.addGenericListener(BlockEntity.class, ForgeClientInitializer::attachBeCapabilities);
+		bus.addGenericListener(ItemStack.class, ForgeClientInitializer::attachItemStackCapabilities);
 
 		if (XplatAbstractions.INSTANCE.isModLoaded("ears")) {
 			EarsIntegration.register();
@@ -195,6 +199,16 @@ public class ForgeClientInitializer {
 		return Collections.unmodifiableMap(ret);
 	});
 
+	private static final Supplier<Map<Item, Function<ItemStack, HaloRenderer>>> HALO_RENDERER = Suppliers.memoize(() -> {
+		var ret = new IdentityHashMap<Item, Function<ItemStack, HaloRenderer>>();
+		BotaniaItems.registerHaloRendererCaps((factory, types) -> {
+			for (var type : types) {
+				ret.put(type, factory);
+			}
+		});
+		return Collections.unmodifiableMap(ret);
+	});
+
 	private static void attachBeCapabilities(AttachCapabilitiesEvent<BlockEntity> e) {
 		var be = e.getObject();
 
@@ -212,6 +226,16 @@ public class ForgeClientInitializer {
 		if (makeWandHud != null) {
 			e.addCapability(prefix("wand_hud"),
 					CapabilityUtil.makeProvider(BotaniaForgeClientCapabilities.WAND_HUD, makeWandHud.apply(entity)));
+		}
+	}
+
+	private static void attachItemStackCapabilities(AttachCapabilitiesEvent<ItemStack> e) {
+		var stack = e.getObject();
+
+		var makeHaloRenderer = HALO_RENDERER.get().get(stack.getItem());
+		if (makeHaloRenderer != null) {
+			e.addCapability(prefix("halo_renderer"),
+					CapabilityUtil.makeProvider(BotaniaForgeClientCapabilities.HALO_RENDERER, makeHaloRenderer.apply(stack)));
 		}
 	}
 

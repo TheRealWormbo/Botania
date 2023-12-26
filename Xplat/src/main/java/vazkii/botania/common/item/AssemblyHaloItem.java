@@ -42,6 +42,7 @@ import net.minecraft.world.level.block.Blocks;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
+import vazkii.botania.api.item.HaloRenderer;
 import vazkii.botania.client.core.handler.ClientTickHandler;
 import vazkii.botania.client.gui.crafting.AssemblyHaloContainer;
 import vazkii.botania.client.lib.ResourcesLib;
@@ -244,78 +245,88 @@ public class AssemblyHaloItem extends AbstractHaloItem {
 		return glowTexture;
 	}
 
-	@Override
-	public void renderCentralSegment(GuiGraphics gui, Player player, ItemStack stack) {
-		Minecraft mc = Minecraft.getInstance();
-		String name = craftingTable.getHoverName().getString();
-		int l = mc.font.width(name);
-		int x = mc.getWindow().getGuiScaledWidth() / 2 - l / 2;
-		int y = mc.getWindow().getGuiScaledHeight() / 2 - 65;
+	public static class AssemblyHaloRenderer implements HaloRenderer {
+		private final ItemStack stack;
+		private final AssemblyHaloItem haloItem;
 
-		gui.fill(x - 6, y - 6, x + l + 6, y + 37, 0x22000000);
-		gui.fill(x - 4, y - 4, x + l + 4, y + 35, 0x22000000);
-		gui.renderItem(craftingTable, mc.getWindow().getGuiScaledWidth() / 2 - 8, mc.getWindow().getGuiScaledHeight() / 2 - 52);
-
-		gui.drawString(mc.font, name, x, y, 0xFFFFFF);
-	}
-
-	@Override
-	public void renderSavedSlotSegment(GuiGraphics gui, Player player, ItemStack stack, int slot) {
-		Recipe<CraftingContainer> recipe = getSavedRecipe(player.level(), stack, slot);
-		Component label;
-		boolean setRecipe = false;
-
-		if (recipe == null) {
-			label = Component.translatable("botaniamisc.unsetRecipe");
-			recipe = getLastRecipe(player.level(), stack);
-		} else {
-			label = recipe.getResultItem(player.level().registryAccess()).getHoverName();
-			setRecipe = true;
+		public AssemblyHaloRenderer(ItemStack stack) {
+			this.stack = stack;
+			this.haloItem = (AssemblyHaloItem) stack.getItem();
 		}
 
-		renderRecipe(gui, label, recipe, player, setRecipe);
-	}
+		@Override
+		public void renderCentralSegment(GuiGraphics gui, Player player, ItemStack stack) {
+			Minecraft mc = Minecraft.getInstance();
+			String name = craftingTable.getHoverName().getString();
+			int l = mc.font.width(name);
+			int x = mc.getWindow().getGuiScaledWidth() / 2 - l / 2;
+			int y = mc.getWindow().getGuiScaledHeight() / 2 - 65;
 
-	private static void renderRecipe(GuiGraphics gui, Component label, @Nullable Recipe<CraftingContainer> recipe, Player player, boolean isSavedRecipe) {
-		Minecraft mc = Minecraft.getInstance();
+			gui.fill(x - 6, y - 6, x + l + 6, y + 37, 0x22000000);
+			gui.fill(x - 4, y - 4, x + l + 4, y + 35, 0x22000000);
+			gui.renderItem(craftingTable, mc.getWindow().getGuiScaledWidth() / 2 - 8, mc.getWindow().getGuiScaledHeight() / 2 - 52);
 
-		ItemStack recipeResult;
-		if (recipe != null && !(recipeResult = recipe.getResultItem(player.level().registryAccess())).isEmpty()) {
-			int x = mc.getWindow().getGuiScaledWidth() / 2 - 45;
-			int y = mc.getWindow().getGuiScaledHeight() / 2 - 90;
+			gui.drawString(mc.font, name, x, y, 0xFFFFFF);
+		}
 
-			gui.fill(x - 6, y - 6, x + 90 + 6, y + 60, 0x22000000);
-			gui.fill(x - 4, y - 4, x + 90 + 4, y + 58, 0x22000000);
+		@Override
+		public void renderSavedSlotSegment(GuiGraphics gui, Player player, ItemStack stack, int slot) {
+			Recipe<CraftingContainer> recipe = getSavedRecipe(player.level(), stack, slot);
+			Component label;
+			boolean setRecipe = false;
 
-			gui.fill(x + 66, y + 14, x + 92, y + 40, 0x22000000);
-			gui.fill(x - 2, y - 2, x + 56, y + 56, 0x22000000);
-
-			int wrap = recipe instanceof ShapedRecipe shaped ? shaped.getWidth() : 3;
-			for (int i = 0; i < recipe.getIngredients().size(); i++) {
-				Ingredient ingr = recipe.getIngredients().get(i);
-				if (ingr != Ingredient.EMPTY) {
-					ItemStack stack = ingr.getItems()[ClientTickHandler.ticksInGame / 20 % ingr.getItems().length];
-					int xpos = x + i % wrap * 18;
-					int ypos = y + i / wrap * 18;
-					gui.fill(xpos, ypos, xpos + 16, ypos + 16, 0x22000000);
-
-					gui.renderItem(stack, xpos, ypos);
-				}
+			if (recipe == null) {
+				label = Component.translatable("botaniamisc.unsetRecipe");
+				recipe = getLastRecipe(player.level(), stack);
+			} else {
+				label = recipe.getResultItem(player.level().registryAccess()).getHoverName();
+				setRecipe = true;
 			}
 
-			gui.renderItem(recipeResult, x + 72, y + 18);
-			gui.renderItemDecorations(mc.font, recipeResult, x + 72, y + 18);
-
+			renderRecipe(gui, label, recipe, player, setRecipe);
 		}
 
-		int yoff = 110;
-		if (isSavedRecipe && recipe != null && !canCraftHeuristic(player, recipe)) {
-			String warning = ChatFormatting.RED + I18n.get("botaniamisc.cantCraft");
-			gui.drawCenteredString(mc.font, warning, mc.getWindow().getGuiScaledWidth() / 2, mc.getWindow().getGuiScaledHeight() / 2 - yoff, 0xFFFFFF);
-			yoff += 12;
-		}
+		private static void renderRecipe(GuiGraphics gui, Component label, @Nullable Recipe<CraftingContainer> recipe, Player player, boolean isSavedRecipe) {
+			Minecraft mc = Minecraft.getInstance();
 
-		gui.drawCenteredString(mc.font, label, mc.getWindow().getGuiScaledWidth() / 2, mc.getWindow().getGuiScaledHeight() / 2 - yoff, 0xFFFFFF);
+			ItemStack recipeResult;
+			if (recipe != null && !(recipeResult = recipe.getResultItem(player.level().registryAccess())).isEmpty()) {
+				int x = mc.getWindow().getGuiScaledWidth() / 2 - 45;
+				int y = mc.getWindow().getGuiScaledHeight() / 2 - 90;
+
+				gui.fill(x - 6, y - 6, x + 90 + 6, y + 60, 0x22000000);
+				gui.fill(x - 4, y - 4, x + 90 + 4, y + 58, 0x22000000);
+
+				gui.fill(x + 66, y + 14, x + 92, y + 40, 0x22000000);
+				gui.fill(x - 2, y - 2, x + 56, y + 56, 0x22000000);
+
+				int wrap = recipe instanceof ShapedRecipe shaped ? shaped.getWidth() : 3;
+				for (int i = 0; i < recipe.getIngredients().size(); i++) {
+					Ingredient ingr = recipe.getIngredients().get(i);
+					if (ingr != Ingredient.EMPTY) {
+						ItemStack stack = ingr.getItems()[ClientTickHandler.ticksInGame / 20 % ingr.getItems().length];
+						int xpos = x + i % wrap * 18;
+						int ypos = y + i / wrap * 18;
+						gui.fill(xpos, ypos, xpos + 16, ypos + 16, 0x22000000);
+
+						gui.renderItem(stack, xpos, ypos);
+					}
+				}
+
+				gui.renderItem(recipeResult, x + 72, y + 18);
+				gui.renderItemDecorations(mc.font, recipeResult, x + 72, y + 18);
+
+			}
+
+			int yoff = 110;
+			if (isSavedRecipe && recipe != null && !canCraftHeuristic(player, recipe)) {
+				String warning = ChatFormatting.RED + I18n.get("botaniamisc.cantCraft");
+				gui.drawCenteredString(mc.font, warning, mc.getWindow().getGuiScaledWidth() / 2, mc.getWindow().getGuiScaledHeight() / 2 - yoff, 0xFFFFFF);
+				yoff += 12;
+			}
+
+			gui.drawCenteredString(mc.font, label, mc.getWindow().getGuiScaledWidth() / 2, mc.getWindow().getGuiScaledHeight() / 2 - yoff, 0xFFFFFF);
+		}
 	}
 
 	public static class RecipePlacer extends ServerPlaceRecipe<CraftingContainer> {

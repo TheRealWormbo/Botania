@@ -138,6 +138,7 @@ public class FabricClientInitializer implements ClientModInitializer {
 		BotaniaEntities.registerWandHudCaps((factory, types) -> BotaniaFabricClientCapabilities.ENTITY_WAND_HUD.registerForTypes((e, c) -> factory.apply(e), types));
 		BotaniaBlockEntities.registerWandHudCaps((factory, types) -> BotaniaFabricClientCapabilities.WAND_HUD.registerForBlockEntities((be, c) -> factory.apply(be), types));
 		BotaniaFlowerBlocks.registerWandHudCaps((factory, types) -> BotaniaFabricClientCapabilities.WAND_HUD.registerForBlockEntities((be, c) -> factory.apply(be), types));
+		BotaniaItems.registerHaloRendererCaps((factory, types) -> BotaniaFabricClientCapabilities.HALO_RENDERER.registerForItems((it, c) -> factory.apply(it), types));
 	}
 
 	private static void registerArmors() {

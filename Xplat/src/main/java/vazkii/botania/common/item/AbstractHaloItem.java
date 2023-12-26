@@ -22,12 +22,14 @@ import net.minecraft.world.level.Level;
 
 import org.joml.Matrix4f;
 
+import vazkii.botania.api.item.HaloRenderer;
 import vazkii.botania.client.core.handler.ClientTickHandler;
 import vazkii.botania.client.core.helper.RenderHelper;
 import vazkii.botania.common.annotations.SoftImplement;
 import vazkii.botania.common.helper.ItemNBTHelper;
 import vazkii.botania.common.helper.PlayerHelper;
 import vazkii.botania.common.helper.VecHelper;
+import vazkii.botania.xplat.ClientXplatAbstractions;
 
 public abstract class AbstractHaloItem extends Item {
 	public static final int SEGMENTS = 12;
@@ -125,10 +127,6 @@ public abstract class AbstractHaloItem extends Item {
 	public abstract ResourceLocation getGlowResource(ItemStack stack);
 
 	public abstract ItemStack getDisplayItem(Player player, ItemStack stack, int seg);
-
-	public abstract void renderCentralSegment(GuiGraphics gui, Player player, ItemStack stack);
-
-	public abstract void renderSavedSlotSegment(GuiGraphics gui, Player player, ItemStack stack, int slot);
 
 	public static class Rendering {
 		public static void onRenderWorldLast(Camera camera, float partialTicks, PoseStack ms, RenderBuffers buffers) {
@@ -230,13 +228,16 @@ public abstract class AbstractHaloItem extends Item {
 		}
 
 		public static void renderHUD(GuiGraphics gui, Player player, ItemStack stack) {
-			int slot = getSegmentLookedAt(stack, player);
-			AbstractHaloItem item = (AbstractHaloItem) stack.getItem();
+			HaloRenderer renderer = ClientXplatAbstractions.INSTANCE.findHaloRenderer(stack);
+			if (renderer == null) {
+				return;
+			}
 
+			int slot = getSegmentLookedAt(stack, player);
 			if (slot == 0) {
-				item.renderCentralSegment(gui, player, stack);
+				renderer.renderCentralSegment(gui, player, stack);
 			} else {
-				item.renderSavedSlotSegment(gui, player, stack, slot);
+				renderer.renderSavedSlotSegment(gui, player, stack, slot);
 			}
 		}
 	}

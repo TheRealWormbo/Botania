@@ -9,6 +9,7 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.Entity;
+import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
@@ -17,6 +18,7 @@ import org.jetbrains.annotations.Nullable;
 
 import vazkii.botania.api.ServiceUtil;
 import vazkii.botania.api.block.WandHUD;
+import vazkii.botania.api.item.HaloRenderer;
 import vazkii.botania.network.BotaniaPacket;
 
 import static vazkii.botania.common.lib.ResourceLocationHelper.prefix;
@@ -37,6 +39,9 @@ public interface ClientXplatAbstractions {
 
 	@Nullable
 	WandHUD findWandHud(Entity entity);
+
+	@Nullable
+	HaloRenderer findHaloRenderer(ItemStack haloItem);
 
 	// Rendering stuff
 	BakedModel wrapPlatformModel(BakedModel original);
