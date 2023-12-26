@@ -51,7 +51,7 @@ public class InterceptorTest {
 		if (retainer == null) {
 			throw new GameTestAssertPosException("Expected corporea retainer", helper.absolutePos(retainerPos), retainerPos, helper.getTick());
 		}
-		if (!retainer.hasPendingRequest() ^ invert) {
+		if (retainer.hasPendingRequest() == invert) {
 			throw new GameTestAssertPosException("Expected corporea retainer to " + (invert ? "not " : "") + "have a pending request",
 					helper.absolutePos(retainerPos), retainerPos, helper.getTick());
 		}

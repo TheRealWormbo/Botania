@@ -42,4 +42,13 @@ public interface CorporeaRequestMatcher extends Predicate<ItemStack> {
 	enum Dummy implements CorporeaRequestMatcher {
 		INSTANCE
 	}
+
+	/**
+	 * Whether this request can be replayed, e.g. by a Corporea Retainer.
+	 * 
+	 * @return {@code false} if it never makes sense to repeat this request, otherwise {@code true}.
+	 */
+	default boolean canBeReplayed() {
+		return false;
+	}
 }

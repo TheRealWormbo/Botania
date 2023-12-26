@@ -64,8 +64,8 @@ public class CorporeaHelperImpl implements CorporeaHelper {
 	}
 
 	@Override
-	public CorporeaRequestMatcher createMatcher(ItemStack stack, boolean checkNBT) {
-		return new CorporeaItemStackMatcher(stack, checkNBT);
+	public CorporeaRequestMatcher createMatcher(ItemStack stack, boolean checkNBT, boolean allowReplay) {
+		return new CorporeaItemStackMatcher(stack, checkNBT, allowReplay);
 	}
 
 	@Override

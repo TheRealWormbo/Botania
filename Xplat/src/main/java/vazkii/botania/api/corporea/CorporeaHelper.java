@@ -42,6 +42,13 @@ public interface CorporeaHelper {
 	 * Create a CorporeaRequestMatcher from an ItemStack and NBT-checkness.
 	 */
 	default CorporeaRequestMatcher createMatcher(ItemStack stack, boolean checkNBT) {
+		return createMatcher(stack, checkNBT, true);
+	}
+
+	/**
+	 * Create a CorporeaRequestMatcher from an ItemStack, NBT-checkness, and whether it can be replayed.
+	 */
+	default CorporeaRequestMatcher createMatcher(ItemStack stack, boolean checkNBT, boolean allowReplay) {
 		return CorporeaRequestMatcher.Dummy.INSTANCE;
 	}
 

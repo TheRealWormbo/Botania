@@ -80,7 +80,13 @@ public class CorporeaRetainerBlockEntity extends BotaniaBlockEntity implements W
 	}
 
 	public void fulfilRequest() {
-		if (!hasPendingRequest()) {
+		if (request == null) {
+			return;
+		}
+
+		if (!request.canBeReplayed()) {
+			forget();
+			setChanged();
 			return;
 		}
 

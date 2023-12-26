@@ -114,4 +114,9 @@ public class CorporeaStringMatcher implements CorporeaRequestMatcher {
 	private static String stripControlCodes(String str) {
 		return patternControlCode.matcher(str).replaceAll("");
 	}
+
+	@Override
+	public boolean canBeReplayed() {
+		return true;
+	}
 }
