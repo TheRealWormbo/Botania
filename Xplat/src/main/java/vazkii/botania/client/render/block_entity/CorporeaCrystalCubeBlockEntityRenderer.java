@@ -32,6 +32,14 @@ import vazkii.botania.common.helper.VecHelper;
 import vazkii.botania.mixin.ItemEntityAccessor;
 
 public class CorporeaCrystalCubeBlockEntityRenderer implements BlockEntityRenderer<CorporeaCrystalCubeBlockEntity> {
+	public static final int COLOR_GREEN = 0x00FF00;
+	public static final int COLOR_YELLOW = 0xFFFF00;
+	public static final int COLOR_WHITE = 0xFFFFFF;
+	public static final int DIVISOR_MEGA = 1_000_000;
+	public static final int DIVISOR_KILO = 1_000;
+	public static final int THRESHOLD_MEGA = DIVISOR_MEGA * 10 - 1;
+	public static final int THRESHOLD_KILO = DIVISOR_KILO * 10 - 1;
+
 	// Ugly but there's no other way to get the model besides grabbing it from the event
 	public static BakedModel cubeModel = null;
 	private ItemEntity entity = null;
@@ -86,18 +94,9 @@ public class CorporeaCrystalCubeBlockEntityRenderer implements BlockEntityRender
 
 		if (!stack.isEmpty() && cube != null) {
 			int count = cube.getItemCount();
-			String countStr = String.valueOf(count);
-			int color = 0xFFFFFF;
-			if (count > 9_999) {
-				countStr = count / 1_000 + "K";
-				color = 0xFFFF00;
-				if (count > 9_999_999) {
-					countStr = count / 1_000_000 + "M";
-					color = 0x00FF00;
-				}
-			}
-			color |= 0xA0 << 24;
-			int colorShade = (color & 16579836) >> 2 | color & -16777216;
+			String countStr = getTextForCount(count);
+			int color = getColorForCount(count) | 0xA0 << 24;
+			int colorShade = (color & 0xfcfcfc) >> 2 | color & 0xff000000;
 
 			float s = 1F / 64F;
 			ms.scale(s, s, s);
@@ -116,5 +115,13 @@ public class CorporeaCrystalCubeBlockEntityRenderer implements BlockEntityRender
 		}
 
 		ms.popPose();
+	}
+
+	public static int getColorForCount(int count) {
+		return count > THRESHOLD_MEGA ? COLOR_GREEN : count > THRESHOLD_KILO ? COLOR_YELLOW : COLOR_WHITE;
+	}
+
+	public static String getTextForCount(int count) {
+		return count > THRESHOLD_MEGA ? count / DIVISOR_MEGA + "M" : count > THRESHOLD_KILO ? count / DIVISOR_KILO + "K" : Integer.toString(count);
 	}
 }

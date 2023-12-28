@@ -49,7 +49,7 @@ import vazkii.botania.common.lib.BotaniaTags;
 import java.util.*;
 
 public class CorporeaSparkEntity extends SparkBaseEntity implements CorporeaSpark {
-	private static final int SCAN_RANGE = 8;
+	public static final int SCAN_RANGE = 8;
 
 	private static final String TAG_MASTER = "master";
 	private static final String TAG_CREATIVE = "creative";

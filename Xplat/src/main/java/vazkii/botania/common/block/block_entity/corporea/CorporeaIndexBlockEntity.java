@@ -8,6 +8,8 @@
  */
 package vazkii.botania.common.block.block_entity.corporea;
 
+import it.unimi.dsi.fastutil.doubles.DoubleObjectPair;
+
 import net.minecraft.ChatFormatting;
 import net.minecraft.core.BlockPos;
 import net.minecraft.network.chat.Component;
@@ -20,6 +22,7 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.AABB;
 
+import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 import vazkii.botania.api.corporea.*;
@@ -365,6 +368,29 @@ public class CorporeaIndexBlockEntity extends BaseCorporeaBlockEntity implements
 	public static void clearIndexCache() {
 		clientIndexes.clear();
 		serverIndexes.clear();
+	}
+
+	@NotNull
+	public static List<CorporeaIndexBlockEntity> getIndexesByDistance(@NotNull Level level, @NotNull BlockPos referencePos, double maximumDistance) {
+		final double maxDistSq = maximumDistance * maximumDistance;
+		final List<DoubleObjectPair<CorporeaIndexBlockEntity>> distancesList = new ArrayList<>();
+		for (var serverIndex : serverIndexes) {
+			if (serverIndex.level != level) {
+				continue;
+			}
+			var distanceSq = serverIndex.worldPosition.distSqr(referencePos);
+			if (distanceSq <= maxDistSq) {
+				distancesList.add(DoubleObjectPair.of(distanceSq, serverIndex));
+			}
+		}
+
+		distancesList.sort(Comparator.comparingDouble(DoubleObjectPair::firstDouble));
+
+		final List<CorporeaIndexBlockEntity> resultList = new ArrayList<>(distancesList.size());
+		for (final var distanceEntry : distancesList) {
+			resultList.add(distanceEntry.value());
+		}
+		return resultList;
 	}
 
 	public void performPlayerRequest(ServerPlayer player, CorporeaRequestMatcher request, int count) {
