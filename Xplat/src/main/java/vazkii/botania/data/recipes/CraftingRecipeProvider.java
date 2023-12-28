@@ -1839,9 +1839,9 @@ public class CraftingRecipeProvider extends BotaniaRecipeProvider {
 		wallShape(BotaniaBlocks.corporeaBrickWall, BotaniaBlocks.corporeaBrick, 6).save(consumer);
 
 		ShapedRecipeBuilder.shaped(RecipeCategory.TOOLS, BotaniaItems.corporeaHalo)
-				.define('P', BotaniaItems.manaPearl)
+				.define('P', BotaniaItems.pixieDust)
 				.define('C', BotaniaBlocks.corporeaIndex)
-				.define('I', BotaniaTags.Items.INGOTS_MANASTEEL)
+				.define('I', BotaniaTags.Items.INGOTS_ELEMENTIUM)
 				.pattern(" P ")
 				.pattern("ICI")
 				.pattern(" I ")

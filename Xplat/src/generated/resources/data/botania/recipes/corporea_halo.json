@@ -6,10 +6,10 @@
       "item": "botania:corporea_index"
     },
     "I": {
-      "tag": "botania:manasteel_ingots"
+      "tag": "botania:elementium_ingots"
     },
     "P": {
-      "item": "botania:mana_pearl"
+      "item": "botania:pixie_dust"
     }
   },
   "pattern": [

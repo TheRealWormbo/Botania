@@ -23,7 +23,7 @@ import java.util.function.Supplier;
 
 public class ReificationHaloItem extends AbstractHaloItem {
 
-	private static final ResourceLocation glowTexture = new ResourceLocation(ResourcesLib.MISC_GLOW_PURPLE);
+	private static final ResourceLocation glowTexture = new ResourceLocation(ResourcesLib.MISC_GLOW_CORPOREA);
 	// can't create a stack of BotaniaBlocks.corporeaIndex here directly because things would explode
 	private static final Supplier<ItemStack> corporeaIndexReference = Suppliers.memoize(() -> new ItemStack(BotaniaBlocks.corporeaIndex));
 
