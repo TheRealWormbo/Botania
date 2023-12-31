@@ -36,6 +36,7 @@ import vazkii.botania.common.item.BotaniaItems;
 import vazkii.botania.common.item.LexicaBotaniaItem;
 import vazkii.botania.common.item.equipment.bauble.FlugelTiaraItem;
 import vazkii.botania.common.lib.BotaniaTags;
+import vazkii.patchouli.common.advancement.PatchouliBookOpenTrigger;
 
 import java.util.List;
 import java.util.concurrent.CompletableFuture;
@@ -115,8 +116,8 @@ public class AdvancementProvider {
 			Advancement.Builder.advancement()
 					.display(simple(BotaniaItems.lexicon, "lexiconUse", FrameType.TASK))
 					.parent(root)
-					.addCriterion("use_lexicon", new UseItemSuccessTrigger.Instance(ContextAwarePredicate.ANY,
-							ItemPredicate.Builder.item().of(BotaniaItems.lexicon).build(), LocationPredicate.ANY))
+					.addCriterion("use_lexicon", new PatchouliBookOpenTrigger.Instance(ContextAwarePredicate.ANY,
+							BuiltInRegistries.ITEM.getKey(BotaniaItems.lexicon)))
 					.save(consumer, mainId("lexicon_use"));
 			Advancement.Builder.advancement()
 					.display(simple(BotaniaItems.cacophonium, "cacophoniumCraft", FrameType.TASK))

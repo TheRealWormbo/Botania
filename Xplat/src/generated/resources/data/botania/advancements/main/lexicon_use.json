@@ -3,13 +3,9 @@
   "criteria": {
     "use_lexicon": {
       "conditions": {
-        "item": {
-          "items": [
-            "botania:lexicon"
-          ]
-        }
+        "book": "botania:lexicon"
       },
-      "trigger": "botania:use_item_success"
+      "trigger": "patchouli:open_book"
     }
   },
   "display": {

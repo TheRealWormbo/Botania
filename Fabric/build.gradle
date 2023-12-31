@@ -46,6 +46,7 @@ sourceSets.main.resources {
 }
 
 repositories {
+    mavenLocal()
     maven {
         name = "Modmuss"
         url = "https://maven.modmuss50.me/"
@@ -107,7 +108,7 @@ dependencies {
 
     compileOnly project(":Xplat")
 
-    modImplementation "vazkii.patchouli:Patchouli:${minecraft_version}-84-FABRIC"
+    modImplementation "vazkii.patchouli:Patchouli:${minecraft_version}-85-FABRIC-SNAPSHOT"
 
     modCompileOnly "me.shedaniel:RoughlyEnoughItems-fabric:12.0.625"
 
