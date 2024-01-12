@@ -56,6 +56,10 @@ public interface CorporeaHelper {
 	 * Create a CorporeaRequestMatcher from a String.
 	 */
 	default CorporeaRequestMatcher createMatcher(String name) {
+		return createMatcher(name, true);
+	}
+
+	default CorporeaRequestMatcher createMatcher(String name, boolean allowReplay) {
 		return CorporeaRequestMatcher.Dummy.INSTANCE;
 	}
 

@@ -21,6 +21,7 @@ import net.minecraft.world.item.ItemStack;
 import vazkii.botania.client.core.RecipeBookAccess;
 import vazkii.botania.client.core.proxy.ClientProxy;
 import vazkii.botania.common.block.block_entity.corporea.CorporeaIndexBlockEntity;
+import vazkii.botania.common.item.ReificationHaloItem;
 import vazkii.botania.mixin.client.AbstractContainerScreenAccessor;
 import vazkii.botania.mixin.client.RecipeBookComponentAccessor;
 import vazkii.botania.mixin.client.RecipeBookPageAccessor;
@@ -42,7 +43,7 @@ public class CorporeaInputHandler {
 
 		if (mc.level == null || !supportedGuiFilter.test(mc.screen)
 				|| !ClientProxy.CORPOREA_REQUEST.matches(keyCode, scanCode)
-				|| CorporeaIndexBlockEntity.getNearbyValidIndexes(mc.player).isEmpty()) {
+				|| !ReificationHaloItem.isHoldingHalo(mc.player) && CorporeaIndexBlockEntity.getNearbyValidIndexes(mc.player).isEmpty()) {
 			return false;
 		}
 

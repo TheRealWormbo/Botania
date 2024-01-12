@@ -27,8 +27,14 @@ public class CorporeaStringMatcher implements CorporeaRequestMatcher {
 	private static final String TAG_REQUEST_CONTENTS = "requestContents";
 
 	private final String[] expression;
+	private final boolean allowReplay;
 
 	public CorporeaStringMatcher(String expression) {
+		this(expression, true);
+	}
+
+	public CorporeaStringMatcher(String expression, boolean allowReplay) {
+		this.allowReplay = allowReplay;
 		boolean contains = false;
 		for (String wc : WILDCARD_STRINGS) {
 			if (expression.endsWith(wc)) {
@@ -61,7 +67,7 @@ public class CorporeaStringMatcher implements CorporeaRequestMatcher {
 
 	public static CorporeaStringMatcher createFromNBT(CompoundTag tag) {
 		String expression = tag.getString(TAG_REQUEST_CONTENTS);
-		return new CorporeaStringMatcher(expression);
+		return new CorporeaStringMatcher(expression, true);
 	}
 
 	@Override
@@ -117,6 +123,6 @@ public class CorporeaStringMatcher implements CorporeaRequestMatcher {
 
 	@Override
 	public boolean canBeReplayed() {
-		return true;
+		return allowReplay;
 	}
 }

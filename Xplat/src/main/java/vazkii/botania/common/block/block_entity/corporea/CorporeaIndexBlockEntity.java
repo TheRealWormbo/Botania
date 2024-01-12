@@ -22,6 +22,8 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.AABB;
 
+import org.apache.commons.lang3.mutable.MutableInt;
+import org.apache.commons.lang3.mutable.MutableObject;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
@@ -30,11 +32,14 @@ import vazkii.botania.common.BotaniaStats;
 import vazkii.botania.common.advancements.CorporeaRequestTrigger;
 import vazkii.botania.common.block.block_entity.BotaniaBlockEntities;
 import vazkii.botania.common.helper.MathHelper;
+import vazkii.botania.common.item.BotaniaItems;
+import vazkii.botania.common.item.ReificationHaloItem;
 import vazkii.botania.network.serverbound.IndexStringRequestPacket;
 import vazkii.botania.xplat.ClientXplatAbstractions;
 import vazkii.botania.xplat.XplatAbstractions;
 
 import java.util.*;
+import java.util.function.Supplier;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -333,7 +338,23 @@ public class CorporeaIndexBlockEntity extends BaseCorporeaBlockEntity implements
 				level.addFreshEntity(item);
 			}
 		}
+		notifyHeldCorporeaHaloItem(entity, result);
 		return result;
+	}
+
+	private void notifyHeldCorporeaHaloItem(@Nullable LivingEntity living, CorporeaResult result) {
+		if (living == null || result.stacks().isEmpty()) {
+			return;
+		}
+		ItemStack requestedStack = result.stacks().get(0);
+		notifyHeldCorporeaItem(living.getMainHandItem(), requestedStack);
+		notifyHeldCorporeaItem(living.getOffhandItem(), requestedStack);
+	}
+
+	private static void notifyHeldCorporeaItem(ItemStack haloStack, ItemStack requestedStack) {
+		if (haloStack.is(BotaniaItems.corporeaHalo)) {
+			ReificationHaloItem.saveLastRequested(haloStack, requestedStack);
+		}
 	}
 
 	private boolean isInRange(Player player) {
@@ -396,16 +417,19 @@ public class CorporeaIndexBlockEntity extends BaseCorporeaBlockEntity implements
 	public void performPlayerRequest(ServerPlayer player, CorporeaRequestMatcher request, int count) {
 		if (!XplatAbstractions.INSTANCE.fireCorporeaIndexRequestEvent(player, request, count, this.getSpark())) {
 			CorporeaResult res = this.doRequest(request, count, this.getSpark(), player);
-
-			player.sendSystemMessage(Component.translatable("botaniamisc.requestMsg", count, request.getRequestName(), res.matchedCount(), res.extractedCount()).withStyle(ChatFormatting.LIGHT_PURPLE));
-			player.awardStat(BotaniaStats.CORPOREA_ITEMS_REQUESTED, res.extractedCount());
-			CorporeaRequestTrigger.INSTANCE.trigger(player, player.serverLevel(), this.getBlockPos(), res.extractedCount());
+			sendRequestResult(player, request, count, this.getBlockPos(), res);
 		}
+	}
+
+	public static void sendRequestResult(ServerPlayer player, CorporeaRequestMatcher request, int count, BlockPos requestPos, CorporeaResult result) {
+		player.sendSystemMessage(Component.translatable("botaniamisc.requestMsg", count, request.getRequestName(), result.matchedCount(), result.extractedCount()).withStyle(ChatFormatting.LIGHT_PURPLE));
+		player.awardStat(BotaniaStats.CORPOREA_ITEMS_REQUESTED, result.extractedCount());
+		CorporeaRequestTrigger.INSTANCE.trigger(player, player.serverLevel(), requestPos, result.extractedCount());
 	}
 
 	public static class ClientHandler {
 		public static boolean onChat(Player player, String message) {
-			if (!getNearbyValidIndexes(player).isEmpty()) {
+			if (ReificationHaloItem.isAccessingCorporeaIndex(player) || !getNearbyValidIndexes(player).isEmpty()) {
 				ClientXplatAbstractions.INSTANCE.sendToServer(new IndexStringRequestPacket(message));
 				return true;
 			}
@@ -419,28 +443,52 @@ public class CorporeaIndexBlockEntity extends BaseCorporeaBlockEntity implements
 		}
 
 		List<CorporeaIndexBlockEntity> nearbyIndexes = getNearbyValidIndexes(player);
+		ItemStack mainHandStack = player.getMainHandItem();
+		ItemStack offHandStack = player.getOffhandItem();
 		if (!nearbyIndexes.isEmpty()) {
-			String msg = message.toLowerCase(Locale.ROOT).trim();
+			MutableObject<String> name = new MutableObject<>("");
+			MutableInt count = new MutableInt();
+			parseMessage(player::getMainHandItem, message, count, name);
+
 			for (CorporeaIndexBlockEntity index : nearbyIndexes) {
-				String name = "";
-				int count = 0;
-				for (Pattern pattern : patterns.keySet()) {
-					Matcher matcher = pattern.matcher(msg);
-					if (matcher.matches()) {
-						IRegexStacker stacker = patterns.get(pattern);
-						count = Math.min(MAX_REQUEST, stacker.getCount(matcher));
-						name = stacker.getName(matcher).toLowerCase(Locale.ROOT).trim();
-					}
-				}
+				index.performPlayerRequest(player, CorporeaHelper.instance().createMatcher(name.getValue()), count.intValue());
+			}
+		} else {
+			boolean alreadyRequested = checkRequestWithHaloItem(player, message, mainHandStack, player::getOffhandItem,
+					true);
+			checkRequestWithHaloItem(player, message, offHandStack, player::getMainHandItem, !alreadyRequested);
+		}
+	}
 
-				if (name.equals("this")) {
-					ItemStack stack = player.getMainHandItem();
-					if (!stack.isEmpty()) {
-						name = stack.getHoverName().getString().toLowerCase(Locale.ROOT).trim();
-					}
-				}
+	private static boolean checkRequestWithHaloItem(ServerPlayer player, String message, ItemStack haloStack,
+			Supplier<ItemStack> heldItemSupplier, boolean performRequest) {
+		if (haloStack.is(BotaniaItems.corporeaHalo)) {
+			MutableObject<String> name = new MutableObject<>("");
+			MutableInt count = new MutableInt();
+			parseMessage(heldItemSupplier, message, count, name);
+			var matcher = CorporeaHelper.instance().createMatcher(name.getValue(), false);
+			if (performRequest) {
+				return ReificationHaloItem.doRequest(player.level(), player, haloStack, matcher, count.intValue());
+			}
+		}
+		return false;
+	}
 
-				index.performPlayerRequest(player, CorporeaHelper.instance().createMatcher(name), count);
+	private static void parseMessage(Supplier<ItemStack> heldItemSupplier, String message, MutableInt count, MutableObject<String> name) {
+		String msg = message.toLowerCase(Locale.ROOT).trim();
+		for (Pattern pattern : patterns.keySet()) {
+			Matcher matcher = pattern.matcher(msg);
+			if (matcher.matches()) {
+				IRegexStacker stacker = patterns.get(pattern);
+				count.setValue(Math.min(MAX_REQUEST, stacker.getCount(matcher)));
+				name.setValue(stacker.getName(matcher).toLowerCase(Locale.ROOT).trim());
+			}
+		}
+
+		if (name.getValue().equals("this")) {
+			ItemStack stack = heldItemSupplier.get();
+			if (!stack.isEmpty()) {
+				name.setValue(stack.getHoverName().getString().toLowerCase(Locale.ROOT).trim());
 			}
 		}
 	}

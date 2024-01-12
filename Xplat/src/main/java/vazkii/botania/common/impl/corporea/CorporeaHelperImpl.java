@@ -69,8 +69,8 @@ public class CorporeaHelperImpl implements CorporeaHelper {
 	}
 
 	@Override
-	public CorporeaRequestMatcher createMatcher(String name) {
-		return new CorporeaStringMatcher(name);
+	public CorporeaRequestMatcher createMatcher(String name, boolean allowReplay) {
+		return new CorporeaStringMatcher(name, allowReplay);
 	}
 
 	@Override

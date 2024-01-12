@@ -16,6 +16,8 @@ import net.minecraft.world.item.ItemStack;
 
 import vazkii.botania.api.corporea.CorporeaHelper;
 import vazkii.botania.common.block.block_entity.corporea.CorporeaIndexBlockEntity;
+import vazkii.botania.common.item.BotaniaItems;
+import vazkii.botania.common.item.ReificationHaloItem;
 import vazkii.botania.network.BotaniaPacket;
 
 import static vazkii.botania.common.lib.ResourceLocationHelper.prefix;
@@ -44,9 +46,24 @@ public record IndexKeybindRequestPacket(ItemStack stack) implements BotaniaPacke
 				return;
 			}
 
-			for (CorporeaIndexBlockEntity index : CorporeaIndexBlockEntity.getNearbyValidIndexes(player)) {
+			var nearbyValidIndexes = CorporeaIndexBlockEntity.getNearbyValidIndexes(player);
+			boolean alreadyRequested = checkRequestWithHaloItem(player, player.getMainHandItem(), stack, nearbyValidIndexes.isEmpty());
+			checkRequestWithHaloItem(player, player.getOffhandItem(), stack, !alreadyRequested && nearbyValidIndexes.isEmpty());
+			for (CorporeaIndexBlockEntity index : nearbyValidIndexes) {
 				index.performPlayerRequest(player, CorporeaHelper.instance().createMatcher(stack, true), stack.getCount());
 			}
 		});
+	}
+
+	private static boolean checkRequestWithHaloItem(ServerPlayer player, ItemStack haloStack, ItemStack requestStack, boolean performRequest) {
+		if (!haloStack.is(BotaniaItems.corporeaHalo)) {
+			return false;
+		}
+		ReificationHaloItem.saveLastRequested(haloStack, requestStack);
+		if (performRequest) {
+			var matcher = CorporeaHelper.instance().createMatcher(requestStack, true, false);
+			return ReificationHaloItem.doRequest(player.level(), player, haloStack, matcher, requestStack.getCount());
+		}
+		return false;
 	}
 }

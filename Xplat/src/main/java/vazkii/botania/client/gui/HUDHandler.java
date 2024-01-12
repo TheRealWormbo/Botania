@@ -17,6 +17,7 @@ import net.minecraft.Util;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.screens.ChatScreen;
+import net.minecraft.client.player.LocalPlayer;
 import net.minecraft.client.resources.language.I18n;
 import net.minecraft.core.BlockPos;
 import net.minecraft.network.chat.Component;
@@ -146,7 +147,7 @@ public final class HUDHandler {
 			}
 		}
 
-		if (!CorporeaIndexBlockEntity.getNearbyValidIndexes(mc.player).isEmpty() && mc.screen instanceof ChatScreen) {
+		if (mc.screen instanceof ChatScreen && canAccessCorporeaIndex(mc.player)) {
 			profiler.push("nearIndex");
 			renderNearIndexDisplay(gui);
 			profiler.pop();
@@ -225,6 +226,10 @@ public final class HUDHandler {
 		profiler.pop();
 
 		RenderSystem.setShaderColor(1F, 1F, 1F, 1F);
+	}
+
+	private static boolean canAccessCorporeaIndex(LocalPlayer player) {
+		return ReificationHaloItem.isAccessingCorporeaIndex(player) || !CorporeaIndexBlockEntity.getNearbyValidIndexes(player).isEmpty();
 	}
 
 	private static void renderManaInvBar(GuiGraphics gui, int totalMana, int totalMaxMana) {
