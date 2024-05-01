@@ -9,8 +9,10 @@
 package vazkii.botania.common.block;
 
 import net.minecraft.core.BlockPos;
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
+import net.minecraft.util.RandomSource;
 import net.minecraft.world.Containers;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
@@ -23,6 +25,7 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.biome.Biome;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.EntityBlock;
+import net.minecraft.world.level.block.PointedDripstoneBlock;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.entity.BlockEntityTicker;
 import net.minecraft.world.level.block.entity.BlockEntityType;
@@ -136,9 +139,28 @@ public class PetalApothecaryBlock extends BotaniaBlock implements EntityBlock {
 
 	@Override
 	public void handlePrecipitation(BlockState state, Level world, BlockPos pos, Biome.Precipitation precipitation) {
-		if (world.random.nextInt(20) == 1) {
+		if (precipitation == Biome.Precipitation.RAIN && world.random.nextInt(20) == 1) {
 			if (state.getValue(FLUID) == State.EMPTY) {
 				world.setBlockAndUpdate(pos, state.setValue(FLUID, State.WATER));
+			}
+		}
+	}
+
+	public boolean canReceiveStalactiteDrip(BlockState state, Fluid fluid) {
+		return state.getValue(FLUID) == State.EMPTY && (fluid == Fluids.WATER || fluid == Fluids.LAVA);
+	}
+
+	@SuppressWarnings("deprecation")
+	@Override
+	public void tick(@NotNull BlockState state, @NotNull ServerLevel level, @NotNull BlockPos pos, @NotNull RandomSource random) {
+		BlockPos tipPos = PointedDripstoneBlock.findStalactiteTipAboveCauldron(level, pos);
+		if (tipPos != null) {
+			Fluid fluid = PointedDripstoneBlock.getCauldronFillFluidType(level, tipPos);
+			// probability for water is 3x that of lava, because it would only fill a layer in cauldrons,
+			// so only accept 1 in 3 water fill attempts
+			final boolean isLava = fluid == Fluids.LAVA;
+			if ((isLava || fluid == Fluids.WATER && random.nextInt(3) == 0) && this.canReceiveStalactiteDrip(state, fluid)) {
+				level.setBlockAndUpdate(pos, state.setValue(FLUID, isLava ? State.LAVA : State.WATER));
 			}
 		}
 	}
