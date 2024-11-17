@@ -1,0 +1,6 @@
+{
+  "name": "botania.category.redstone",
+  "description": "botania.category.redstone.description",
+  "icon": "minecraft:redstone",
+  "sortnum": 100
+}

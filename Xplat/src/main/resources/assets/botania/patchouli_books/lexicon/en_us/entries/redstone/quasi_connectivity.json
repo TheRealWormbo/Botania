@@ -1,0 +1,53 @@
+{
+  "name": "botania.entry.quasiConnectivity",
+  "category": "botania:redstone",
+  "icon": "minecraft:piston",
+  "priority": true,
+  "sortnum": -5,
+  "enable_visualize": false,
+  "pages": [
+    {
+      "type": "text",
+      "text": "botania.page.quasiConnectivity0"
+    },
+    {
+      "type": "multiblock",
+      "name": "botania.page.quasiConnectivity1",
+      "multiblock": {
+        "mapping": {
+          "0": "minecraft:polished_andesite",
+          "A": "minecraft:polished_andesite",
+          "G": "minecraft:glass",
+          "P": "minecraft:piston[facing=north,extended=true]",
+          "H": "minecraft:piston_head[facing=north]",
+          "B": "minecraft:iron_door[facing=east,open=true,powered=true,half=lower]",
+          "T": "minecraft:iron_door[facing=east,open=true,powered=true,half=upper]",
+          "L": "minecraft:lever[face=wall,facing=east,powered=true]"
+        },
+        "pattern": [
+          [
+            "     ",
+            "GGGGG",
+            "     "
+          ],
+          [
+            "     ",
+            "HPATG",
+            "  L  "
+          ],
+          [
+            "     ",
+            "HPGBG",
+            "     "
+          ],
+          [
+            "     ",
+            "AA0AA",
+            "     "
+          ]
+        ]
+      },
+      "text": "botania.page.quasiConnectivity1_title"
+    }
+  ]
+}

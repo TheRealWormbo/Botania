@@ -2001,6 +2001,8 @@
   "botania.category.alfhomancy.description": "Unlocking advanced botanic knowledge with help from another realm.",
   "botania.category.misc": "Miscellaneous",
   "botania.category.misc.description": "Various useful pieces of information.",
+  "botania.category.redstone": "Redstone",
+  "botania.category.redstone.description": "Useful information for botanists and non-botanists who want to get things done automatically.",
 
 
   "botania.entry.welcome": "Welcome To Botania",
@@ -3682,7 +3684,15 @@
   "botania.entry.preventingDecay": "Numerical Mana",
   "botania.tagline.preventingDecay": "Seeing the numbers in mana",
   "botania.page.preventingDecay0": "no",
-  
+
+
+  "botania.entry.quasiConnectivity": "Quasi-Connectivity",
+  "botania.tagline.quasiConnectivity": "Works as Intended (MC-108)",
+  "botania.page.quasiConnectivity0": "(QC description here)",
+  "botania.page.quasiConnectivity1": "Example",
+  "botania.page.quasiConnectivity1_title": "The bottom piston is quasi-powered, like the bottom half of the door.",
+
+
   "botania.subtitle.agricarnation": "Agricarnation glimmers",
   "botania.subtitle.airRod": "Rod of the Skies whooshes",
   "botania.subtitle.altarCraft": "Petal Apothecary twinkles",
