@@ -3686,11 +3686,45 @@
   "botania.page.preventingDecay0": "no",
 
 
+  "botania.entry.redstone_signal": "Redstone Signals",
+  "botania.tagline.redstone_signal": "Powerful messaging",
+  "botania.page.redstone_signal0": "$(thing)Redstone components$(0) emit, transfer, or react to an energy called $(thing)redstone power$(0). The presence of this energy is called a $(thing)redstone signal$(0) and exists in 15 discrete $(thing)signal strengths$(0).$(p)Most signal sources emit strength 15, and many components that react to redstone signals ignore the strength of the signal.",
+  "botania.page.redstone_signal1": "Redstone signals not only affect redstone components, but can also be applied to so-called $(thing)redstone conductors$(0).$(p)Redstone conductors are blocks that are usually solid, full, opaque cubes (like $(item)Stone$(0)), although exceptions exist. They are not necessarily a $(thing)redstone component$(0), but some redstone components are also redstone conductors.",
+  "botania.page.redstone_signal2": "Redstone conductors do not react to the $(o)mere presence$() of a redstone signal, unless they are a redstone component. However, when power is $(o)applied$() to them specifically, they provide the same signal strength on all their sides, but do not propagate the signal the same way to adjacent redstone conductors.",
+  "botania.page.redstone_signal3": "Redstone components that react to redstone signals might only accept input from certain sides.$(p)Similarly, redstone components that emit redstone signals might only emit them from certain sides, and whether any side can apply power to a redstone conductor also depends on the component and its orientation.",
+  "botania.page.redstone_signal4": "To test whether a block is a redstone conductor, attach a $(l:redstone/button)$(item)button$(0)$(/l) or $(l:redstone/lever)$(item)lever$(0)$(/l) on any side, or place the block above an active $(l:redstone/redstone_torch)$(item)redstone torch$(0)$(/l). If a redstone component adjacent to another side of the block reacts to the signal, the block is a conductor.",
+
   "botania.entry.quasiConnectivity": "Quasi-Connectivity",
   "botania.tagline.quasiConnectivity": "Works as Intended (MC-108)",
   "botania.page.quasiConnectivity0": "(QC description here)",
   "botania.page.quasiConnectivity1": "Example",
   "botania.page.quasiConnectivity1_title": "The bottom piston is quasi-powered, like the bottom half of the door.",
+
+  "botania.entry.gametick": "Ticks",
+  "botania.tagline.gametick": "Like clockwork",
+  "botania.page.gametick0": "Seconds are often not precise enough when talking about the timing of redstone components. Instead, a smaller time unit called $(thing)tick$(0) is introduced, with 20 ticks corresponding to 1 second.$(p)Durations shorter than one tick are not observable. But when multiple events happen within the same tick, they still happen in a specific order, not simultaneously.",
+  "botania.page.gametick1": "$(thing)Redstone components$(0) usually operate on delays that are multiples of 2 ticks. As a result, the duration of 2 ticks is sometimes referred to as one \"redstone tick\".$(p)To prevent confusion, this book will $(o)not$() use redstone ticks, as some blocks react to changes around them in an odd number of ticks.",
+
+  "botania.entry.button": "Button",
+  "botania.tagline.button": "For pressing matters",
+  "botania.page.button0": "Buttons are among the earliest available $(thing)redstone components$(0). They can be attached to any full side of a block and adjacent $(l:redstone/redstone_wire)$(item)redstone wire$(0)$(/l) connects to them.$(p)When activated, a button emits a $(l:redstone/redstone_signal)$(thing)redstone signal$(0)$(/l) of strength 15 in all directions and also powers the block it is attached to.",
+  "botania.page.button1": "The usual way to activate a button is by a player using it, but wooden buttons also activate when hit by an arrow or trident.$(p)The button will stay active for a certain amount of time (1 second for stone buttons, 1.5 seconds for wooden buttons) and then deactivate again on its own.",
+  "botania.page.button_crafting": "Crafting buttons",
+
+  "botania.entry.lever": "Lever",
+  "botania.tagline.lever": "Pull the lever, Kronk!",
+  "botania.page.lever0": "Levers are a simple $(thing)redstone components$(0) that is made from a piece of $(item)cobblestone$(0) and a $(item)stick$(0). They can be attached to any full side of a block and adjacent $(l:redstone/redstone_wire)$(item)redstone wire$(0)$(/l) connects to them.$(p)A lever is toggled by using it. While activated, it emits a $(l:redstone/redstone_signal)$(thing)redstone signal$(0)$(/l) of strength 15 in all directions and also powers the block it is attached to.",
+  "botania.page.lever_crafting": "Why do we even have that?",
+
+  "botania.entry.redstone_torch": "Redstone Torch",
+  "botania.tagline.redstone_torch": "The simplest logic gate",
+  "botania.page.redstone_torch0": "todo.",
+  "botania.page.redstone_torch1": "todo.",
+  "botania.page.redstone_torch_crafting": "Crafting buttons",
+
+  "botania.entry.redstone_wire": "Redstone wire",
+  "botania.tagline.redstone_wire": "Not the metal kind",
+  "botania.page.redstone_wire0": "(todo).",
 
 
   "botania.subtitle.agricarnation": "Agricarnation glimmers",

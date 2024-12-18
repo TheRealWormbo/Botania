@@ -1,9 +1,9 @@
 {
   "name": "botania.entry.quasiConnectivity",
   "category": "botania:redstone",
-  "icon": "minecraft:piston",
+  "icon": "minecraft:sticky_piston",
   "priority": true,
-  "sortnum": -5,
+  "sortnum": -1,
   "enable_visualize": false,
   "pages": [
     {

@@ -1,0 +1,17 @@
+{
+  "name": "botania.entry.gametick",
+  "category": "botania:redstone",
+  "icon": "botania:hourglass",
+  "priority": true,
+  "sortnum": -4,
+  "pages": [
+    {
+      "type": "text",
+      "text": "botania.page.gametick0"
+    },
+    {
+      "type": "text",
+      "text": "botania.page.gametick1"
+    }
+  ]
+}

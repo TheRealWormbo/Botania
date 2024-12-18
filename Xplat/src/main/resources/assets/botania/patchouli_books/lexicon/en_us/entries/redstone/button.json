@@ -1,0 +1,35 @@
+{
+  "name": "botania.entry.button",
+  "category": "botania:redstone",
+  "icon": "minecraft:stone_button",
+  "pages": [
+    {
+      "type": "text",
+      "text": "botania.page.button0"
+    },
+    {
+      "type": "text",
+      "text": "botania.page.button1"
+    },
+    {
+      "type": "botania:crafting_multi",
+      "text": "botania.page.button_crafting",
+      "heading": "botania.entry.button",
+      "recipes": [
+        "minecraft:oak_button",
+        "minecraft:spruce_button",
+        "minecraft:birch_button",
+        "minecraft:jungle_button",
+        "minecraft:acacia_button",
+        "minecraft:dark_oak_button",
+        "minecraft:crimson_button",
+        "minecraft:warped_button",
+        "minecraft:mangrove_button",
+        "minecraft:bamboo_button",
+        "minecraft:cherry_button",
+        "minecraft:stone_button",
+        "minecraft:polished_blackstone_button"
+      ]
+    }
+  ]
+}

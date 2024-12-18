@@ -1,0 +1,11 @@
+{
+  "name": "botania.entry.redstone_wire",
+  "category": "botania:redstone",
+  "icon": "minecraft:redstone",
+  "pages": [
+    {
+      "type": "text",
+      "text": "botania.page.redstone_wire0"
+    }
+  ]
+}

@@ -1,0 +1,29 @@
+{
+  "name": "botania.entry.redstone_signal",
+  "category": "botania:redstone",
+  "icon": "botania:animated_torch",
+  "priority": true,
+  "sortnum": -3,
+  "pages": [
+    {
+      "type": "text",
+      "text": "botania.page.redstone_signal0"
+    },
+    {
+      "type": "text",
+      "text": "botania.page.redstone_signal1"
+    },
+    {
+      "type": "text",
+      "text": "botania.page.redstone_signal2"
+    },
+    {
+      "type": "text",
+      "text": "botania.page.redstone_signal3"
+    },
+    {
+      "type": "text",
+      "text": "botania.page.redstone_signal4"
+    }
+  ]
+}

@@ -1,0 +1,16 @@
+{
+  "name": "botania.entry.lever",
+  "category": "botania:redstone",
+  "icon": "minecraft:lever",
+  "pages": [
+    {
+      "type": "text",
+      "text": "botania.page.lever0"
+    },
+    {
+      "type": "crafting",
+      "text": "botania.page.lever_crafting",
+      "recipe": "minecraft:lever"
+    }
+  ]
+}
