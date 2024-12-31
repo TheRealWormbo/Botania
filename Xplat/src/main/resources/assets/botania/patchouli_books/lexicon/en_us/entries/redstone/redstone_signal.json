@@ -18,12 +18,71 @@
       "text": "botania.page.redstone_signal2"
     },
     {
-      "type": "text",
-      "text": "botania.page.redstone_signal3"
+      "type": "multiblock",
+      "name": "botania.page.redstone_signal3_title",
+      "multiblock": {
+        "mapping": {
+          "A": "minecraft:polished_andesite",
+          "G": "minecraft:glass",
+          "1": "minecraft:redstone_lamp",
+          "2": "minecraft:redstone_lamp[lit=true]",
+          "L": "minecraft:lever[face=wall,facing=north,powered=true]"
+        },
+        "pattern": [
+          [
+            "LA2",
+            " 0 ",
+            "LG1"
+          ]
+        ]
+      },
+      "text": "botania.page.redstone_signal3_description",
+      "enable_visualize": false
     },
     {
       "type": "text",
       "text": "botania.page.redstone_signal4"
+    },
+    {
+      "type": "multiblock",
+      "name": "botania.page.redstone_signal5_title",
+      "multiblock": {
+        "mapping": {
+          "S": "minecraft:smooth_stone_slab[type=top]",
+          "0": "minecraft:redstone_torch",
+          "1": "minecraft:redstone_lamp",
+          "2": "minecraft:redstone_lamp[lit=true]",
+          "P": "minecraft:repeater[facing=north,powered=true]",
+          "U": "minecraft:repeater[facing=west,powered=false]"
+        },
+        "pattern": [
+          [
+            "     ",
+            "     ",
+            "     "
+          ],
+          [
+            " 1 1 ",
+            "1U0P2",
+            " 1   "
+          ],
+          [
+            "     ",
+            " SSS ",
+            "     "
+          ]
+        ]
+      },
+      "text": "botania.page.redstone_signal5_description",
+      "enable_visualize": false
+    },
+    {
+      "type": "text",
+      "text": "botania.page.redstone_signal6"
+    },
+    {
+      "type": "text",
+      "text": "botania.page.redstone_signal7"
     }
   ]
 }

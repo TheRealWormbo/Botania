@@ -6,6 +6,86 @@
     {
       "type": "text",
       "text": "botania.page.redstone_wire0"
+    },
+    {
+      "type": "text",
+      "text": "botania.page.redstone_wire1"
+    },
+    {
+      "type": "text",
+      "text": "botania.page.redstone_wire2"
+    },
+    {
+      "type": "multiblock",
+      "name": "botania.page.redstone_wire3_title",
+      "multiblock": {
+        "mapping": {
+          "A": "minecraft:polished_andesite",
+          "S": "minecraft:smooth_stone_slab[type=top]",
+          "G": "minecraft:glass",
+          "T": "minecraft:redstone_torch",
+          "L": "minecraft:redstone_lamp[lit=true]",
+          "U": "minecraft:redstone_lamp",
+          "1": "minecraft:redstone_wire[power=15,north=up,south=side]",
+          "2": "minecraft:redstone_wire[power=15,north=side,south=side]",
+          "3": "minecraft:redstone_wire[power=14,north=side,south=side]",
+          "4": "minecraft:redstone_wire[power=14,north=up,south=side]",
+          "5": "minecraft:redstone_wire[power=0,north=side,south=side]",
+          "6": "minecraft:redstone_wire[power=0,north=up,south=side]"
+        },
+        "pattern": [
+          [
+            "  U    ",
+            "       ",
+            "       ",
+            "       ",
+            "       ",
+            "       ",
+            "       "
+          ],
+          [
+            "U5A  L ",
+            "       ",
+            "L3     ",
+            "       ",
+            "L3     ",
+            "       ",
+            "L3     "
+          ],
+          [
+            "LA2T2A ",
+            "       ",
+            " A1T2  ",
+            "   0   ",
+            " G1T2  ",
+            "       ",
+            " S2T2  "
+          ],
+          [
+            "  SSA5U",
+            "       ",
+            "  SSA4L",
+            "       ",
+            "  SSG6U",
+            "       ",
+            "  SSS5U"
+          ],
+          [
+            "    LS ",
+            "       ",
+            "     S ",
+            "       ",
+            "     S ",
+            "       ",
+            "     S "
+          ]
+        ]
+      },
+      "text": "botania.page.redstone_wire3_description",
+      "enable_visualize": false
     }
-  ]
+  ],
+  "extra_recipe_mappings": {
+    "minecraft:redstone_dust": 0
+  }
 }

@@ -12,6 +12,10 @@
       "text": "botania.page.redstone_torch1"
     },
     {
+      "type": "text",
+      "text": "botania.page.redstone_torch2"
+    },
+    {
       "type": "crafting",
       "text": "botania.page.redstone_torch_crafting",
       "recipe": "minecraft:redstone_torch"

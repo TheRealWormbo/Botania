@@ -4,7 +4,6 @@
   "icon": "minecraft:sticky_piston",
   "priority": true,
   "sortnum": -1,
-  "enable_visualize": false,
   "pages": [
     {
       "type": "text",
@@ -12,7 +11,7 @@
     },
     {
       "type": "multiblock",
-      "name": "botania.page.quasiConnectivity1",
+      "name": "botania.page.quasiConnectivity1_title",
       "multiblock": {
         "mapping": {
           "0": "minecraft:polished_andesite",
@@ -47,7 +46,16 @@
           ]
         ]
       },
-      "text": "botania.page.quasiConnectivity1_title"
+      "text": "botania.page.quasiConnectivity1_description",
+      "enable_visualize": false
+    },
+    {
+      "type": "text",
+      "text": "botania.page.quasiConnectivity2"
+    },
+    {
+      "type": "text",
+      "text": "botania.page.quasiConnectivity3"
     }
   ]
 }
