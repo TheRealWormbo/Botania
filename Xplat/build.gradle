@@ -22,7 +22,7 @@ dependencies {
     compileOnly group: 'io.github.llamalad7', name: 'mixinextras-common', version: '0.4.1'
     annotationProcessor group: 'io.github.llamalad7', name: 'mixinextras-common', version: '0.4.1'
 
-    compileOnly group: 'vazkii.patchouli', name: 'Patchouli-xplat', version: patchouli_version
+    compileOnly group: 'vazkii.patchouli', name: 'Patchouli-xplat', version: "${patchouli_version}-SNAPSHOT"
 
     compileOnly group: 'com.unascribed', name: 'ears-api', version: ears_version
 

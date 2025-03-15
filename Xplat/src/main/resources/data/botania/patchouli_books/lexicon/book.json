@@ -8,7 +8,7 @@
   "flip_sound": "botania:lexicon_page",
   "creative_tab": "botania",
   "dont_generate_book": true,
-  "custom_book_item": "botania:lexicon",
+  "custom_book_item": "botania:lexicon[foo]",
   "advancements_tab": "botania:main/root",
   "use_resource_pack": true,
   "i18n": true,
