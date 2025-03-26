@@ -1,0 +1,24 @@
+{
+  "name": "botania.entry.dispenser",
+  "category": "botania:redstone",
+  "icon": "minecraft:dispenser",
+  "pages": [
+    {
+      "type": "text",
+      "text": "botania.page.dispenser0"
+    },
+    {
+      "type": "crafting",
+      "text": "botania.page.dispenser_crafting",
+      "recipe": "minecraft:dispenser"
+    },
+    {
+      "type": "text",
+      "text": "botania.page.dispenser1"
+    },
+    {
+      "type": "text",
+      "text": "botania.page.dispenser2"
+    }
+  ]
+}

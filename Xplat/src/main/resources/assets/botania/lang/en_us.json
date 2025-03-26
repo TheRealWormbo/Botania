@@ -3738,6 +3738,20 @@
   "botania.page.redstone_wire3_title": "Connectivity example",
   "botania.page.redstone_wire3_description": "Upward connections are only visible if they run up a full side.",
 
+  "botania.entry.dropper": "Dropper",
+  "botania.tagline.dropper": "Powered item transport",
+  "botania.page.dropper0": "Droppers are a $(thing)redstone component$(0) that can actively move items. They have an inventory of 3x3 slots and can eject a randomly selected item from a non-empty slot through their front face, either into an item container block or entity in front of the dropper's face, or into the world.",
+  "botania.page.dropper1": "To activate a dropper, it must be powered (or $(l:redstone/quasi_connectivity)$(thing)quasi-powered$(0)$(/l)) by a rising edge $(l:redstone/redstone_signal)$(thing)redstone signal$(0)$(/l). Four $(l:redstone/gametick)$(thing)ticks$(0)$(/l) later, it will attempt to move an item, regardless whether the pulse powering it is still active or has already ended.$(p)If the dropper faces an item container, but that inventory cannot accept the item, it will instead stay in the dropper.",
+  "botania.page.dropper2": "When a dropper ejects an item into the world, it makes a click sound. If the dropper faces an item container, it instead activates silently if it attempts to move an item into that inventory, even if it rejects the item.$(p)Activating an empty dropper makes a slightly higher pitched click sound than when dropping an item into the world, even if the dropper faces an item container.",
+  "botania.page.dropper_crafting": "Click, click, click...",
+
+  "botania.entry.dispenser": "Dispenser",
+  "botania.tagline.dispenser": "An automated bow, among other things",
+  "botania.page.dispenser0": "Dispensers are a $(thing)redstone component$(0) that looks and operates very similarly to a $(l:redstone/dropper)$(item)dropper$(0)$(/l), including its ability to be $(l:redstone/quasi_connectivity)$(thing)quasi-powered$(0)$(/l).$(p)However, a dispenser never moves its items into another inventory. Instead \"uses\" the item, if it knows how to, or just ejects it.",
+  "botania.page.dispenser1": "Dispensers have a wide variety of operations they can perform, but they don't necessarily use items the same way a player does. For example, $(item)fire charges$(0) are launched as small fire balls by a dispenser, while the player can only use them like $(item)flint and steel$(0).$(p)Some examples are listed on the following page.",
+  "botania.page.dispenser2": "$(li)Projectiles (e.g. arrows or eggs) are shot$(li)$(item)Shears$(0) obtain wool from sheep, or honey comb from a bee hive$(li)Buckets are filled or emptied$(li)$(item)Armor stands$(), $(item)minecarts$(0), or $(item)boats$(0) are placed on appropriate surfaces$(li)Carved or $(l:devices/fel_pumpkin)$(item)fel pumpkins$(0)$(/l) are placed to finish summoning mobs$(li)Equipment is applied to a mob, player, or armor stand",
+  "botania.page.dispenser_crafting": "Pew, snip, whoosh, etc.$(br)(but also click, click, click)",
+
 
   "botania.subtitle.agricarnation": "Agricarnation glimmers",
   "botania.subtitle.airRod": "Rod of the Skies whooshes",
