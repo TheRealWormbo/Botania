@@ -81,8 +81,7 @@
           ]
         ]
       },
-      "text": "botania.page.redstone_wire3_description",
-      "enable_visualize": false
+      "text": "botania.page.redstone_wire3_description"
     }
   ],
   "extra_recipe_mappings": {

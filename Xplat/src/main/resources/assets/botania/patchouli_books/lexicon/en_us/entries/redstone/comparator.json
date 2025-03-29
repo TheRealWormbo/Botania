@@ -1,0 +1,125 @@
+{
+  "name": "botania.entry.comparator",
+  "category": "botania:redstone",
+  "icon": "minecraft:comparator",
+  "pages": [
+    {
+      "type": "text",
+      "text": "botania.page.comparator0"
+    },
+    {
+      "type": "crafting",
+      "text": "botania.page.comparator_crafting",
+      "recipe": "minecraft:comparator"
+    },
+    {
+      "type": "text",
+      "text": "botania.page.comparator1"
+    },
+    {
+      "type": "text",
+      "text": "botania.page.comparator2"
+    },
+    {
+      "type": "text",
+      "text": "botania.page.comparator3"
+    },
+    {
+      "type": "text",
+      "text": "botania.page.comparator4"
+    },
+    {
+      "type": "text",
+      "text": "botania.page.comparator5"
+    },
+    {
+      "type": "multiblock",
+      "name": "botania.page.comparator6_title",
+      "multiblock": {
+        "mapping": {
+          "S": "minecraft:smooth_stone_slab[type=top]",
+          "C": "minecraft:polished_andesite",
+          "B": "minecraft:barrel",
+          "L": "minecraft:lever[powered=true,face=floor]",
+          "1": "minecraft:redstone_wire[power=15,east=side,west=side]",
+          "2": "minecraft:redstone_wire[power=14,east=side,west=side]",
+          "3": "minecraft:redstone_wire[power=13,east=side,west=side]",
+          "X": "minecraft:comparator[facing=north,powered=false]",
+          "Y": "minecraft:comparator[facing=north,powered=true]"
+        },
+        "pattern": [
+          [
+            " 3 ",
+            " 2 ",
+            " 1 ",
+            " L "
+          ],
+          [
+            " CY",
+            "BCX",
+            "BCY",
+            " BX"
+          ],
+          [
+            "  S",
+            " 0S",
+            "  S",
+            "  S"
+          ]
+        ]
+      },
+      "text": "botania.page.comparator6_description"
+    },
+    {
+      "type": "text",
+      "text": "botania.page.comparator7"
+    },
+    {
+      "type": "text",
+      "text": "botania.page.comparator8"
+    },
+    {
+      "type": "text",
+      "text": "botania.page.comparator9"
+    },
+    {
+      "type": "multiblock",
+      "name": "botania.page.comparator10_title",
+      "multiblock": {
+        "mapping": {
+          "S": "minecraft:smooth_stone_slab[type=top]",
+          "R": "minecraft:redstone_block",
+          "A": "minecraft:water_cauldron[level=3]",
+          "B": "minecraft:composter[level=8]",
+          "1": "minecraft:redstone_wire[power=12,north=side,south=side]",
+          "2": "minecraft:redstone_wire[power=4,north=side,south=side]",
+          "3": "minecraft:redstone_wire[power=11,east=side,west=side]",
+          "X": "minecraft:comparator[facing=south,mode=subtract]",
+          "Y": "minecraft:comparator[facing=west,mode=subtract]",
+          "Z": "minecraft:comparator[facing=east]"
+        },
+        "pattern": [
+          [
+            "      ",
+            "      ",
+            "      ",
+            "      "
+          ],
+          [
+            "R     ",
+            "Y2X1XR",
+            "3 Z0Z ",
+            "  B A "
+          ],
+          [
+            "      ",
+            "SSSSS ",
+            "S S S ",
+            "      "
+          ]
+        ]
+      },
+      "text": "botania.page.comparator10_description"
+    }
+  ]
+}

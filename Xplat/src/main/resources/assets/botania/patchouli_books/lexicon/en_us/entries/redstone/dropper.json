@@ -8,17 +8,17 @@
       "text": "botania.page.dropper0"
     },
     {
+      "type": "crafting",
+      "text": "botania.page.dropper_crafting",
+      "recipe": "minecraft:dropper"
+    },
+    {
       "type": "text",
       "text": "botania.page.dropper1"
     },
     {
       "type": "text",
       "text": "botania.page.dropper2"
-    },
-    {
-      "type": "crafting",
-      "text": "botania.page.dropper_crafting",
-      "recipe": "minecraft:dropper"
     }
   ]
 }

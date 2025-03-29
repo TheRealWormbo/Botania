@@ -1,0 +1,59 @@
+{
+  "name": "botania.entry.repeater",
+  "category": "botania:redstone",
+  "icon": "minecraft:repeater",
+  "pages": [
+    {
+      "type": "text",
+      "text": "botania.page.repeater0"
+    },
+    {
+      "type": "crafting",
+      "text": "botania.page.repeater_crafting",
+      "recipe": "minecraft:repeater"
+    },
+    {
+      "type": "text",
+      "text": "botania.page.repeater1"
+    },
+    {
+      "type": "text",
+      "text": "botania.page.repeater2"
+    },
+    {
+      "type": "text",
+      "text": "botania.page.repeater3"
+    },
+    {
+      "type": "multiblock",
+      "name": "botania.page.repeater4_title",
+      "multiblock": {
+        "mapping": {
+          "0": "minecraft:smooth_stone_slab[type=top]",
+          "S": "minecraft:smooth_stone_slab[type=top]",
+          "U": "minecraft:redstone_lamp",
+          "L": "minecraft:lever[powered=true,face=floor]",
+          "1": "minecraft:repeater[facing=south,locked=true]",
+          "2": "minecraft:redstone_wire[power=15,north=side,east=side]",
+          "3": "minecraft:repeater[facing=east,powered=true]",
+          "4": "minecraft:repeater[facing=east,powered=true]",
+          "5": "minecraft:redstone_wire[power=15,north=side,south=side,west=side]",
+          "6": "minecraft:redstone_wire[power=14,north=side,west=side]"
+        },
+        "pattern": [
+          [
+            "U12",
+            " 34",
+            "L56"
+          ],
+          [
+            "SSS",
+            "S0S",
+            "SSS"
+          ]
+        ]
+      },
+      "text": "botania.page.repeater4_description"
+    }
+  ]
+}
