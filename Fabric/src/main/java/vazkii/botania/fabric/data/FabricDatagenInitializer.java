@@ -18,6 +18,7 @@ import net.minecraft.world.damagesource.DamageType;
 
 import vazkii.botania.data.*;
 import vazkii.botania.data.recipes.*;
+import vazkii.botania.fabric.data.xplat.UpsideDownLanguageProvider;
 
 import static vazkii.botania.common.BotaniaDamageTypes.*;
 
@@ -67,6 +68,7 @@ public class FabricDatagenInitializer implements DataGeneratorEntrypoint {
 		pack.addProvider((PackOutput output) -> new ItemModelProvider(output));
 		pack.addProvider((PackOutput output) -> new PottedPlantModelProvider(output));
 		pack.addProvider(AdvancementProvider::create);
+		pack.addProvider(UpsideDownLanguageProvider::new);
 	}
 
 	@Override
