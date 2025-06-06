@@ -1,0 +1,16 @@
+{
+  "name": "botania.entry.redstone_block",
+  "category": "botania:redstone",
+  "icon": "minecraft:redstone_block",
+  "pages": [
+    {
+      "type": "text",
+      "text": "botania.page.redstone_block0"
+    },
+    {
+      "type": "crafting",
+      "text": "botania.page.redstone_block_crafting",
+      "recipe": "minecraft:redstone_block"
+    }
+  ]
+}

@@ -1,0 +1,41 @@
+{
+  "name": "botania.entry.pressure_plate",
+  "category": "botania:redstone",
+  "icon": "minecraft:oak_pressure_plate",
+  "pages": [
+    {
+      "type": "text",
+      "text": "botania.page.pressure_plate0"
+    },
+    {
+      "type": "text",
+      "text": "botania.page.pressure_plate1"
+    },
+    {
+      "type": "text",
+      "text": "botania.page.pressure_plate2"
+    },
+    {
+      "type": "botania:crafting_multi",
+      "text": "botania.page.pressure_plate_crafting",
+      "heading": "botania.entry.pressure_plate",
+      "recipes": [
+        "minecraft:oak_pressure_plate",
+        "minecraft:spruce_pressure_plate",
+        "minecraft:birch_pressure_plate",
+        "minecraft:jungle_pressure_plate",
+        "minecraft:acacia_pressure_plate",
+        "minecraft:dark_oak_pressure_plate",
+        "minecraft:crimson_pressure_plate",
+        "minecraft:warped_pressure_plate",
+        "minecraft:mangrove_pressure_plate",
+        "minecraft:bamboo_pressure_plate",
+        "minecraft:cherry_pressure_plate",
+        "minecraft:stone_pressure_plate",
+        "minecraft:polished_blackstone_pressure_plate",
+        "minecraft:light_weighted_pressure_plate",
+        "minecraft:heavy_weighted_pressure_plate"
+      ]
+    }
+  ]
+}
