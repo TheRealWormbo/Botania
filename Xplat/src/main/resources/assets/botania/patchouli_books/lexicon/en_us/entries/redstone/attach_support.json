@@ -1,0 +1,24 @@
+{
+  "name": "botania.entry.attach_support",
+  "category": "botania:redstone",
+  "icon": "minecraft:ladder",
+  "priority": true,
+  "pages": [
+    {
+      "type": "text",
+      "text": "botania.page.attach_support0"
+    },
+    {
+      "type": "text",
+      "text": "botania.page.attach_support1"
+    },
+    {
+      "type": "text",
+      "text": "botania.page.attach_support2"
+    },
+    {
+      "type": "text",
+      "text": "botania.page.attach_support3"
+    }
+  ]
+}

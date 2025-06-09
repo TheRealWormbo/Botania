@@ -3707,6 +3707,13 @@
   "botania.page.quasiConnectivity2": "Blocks that react to $(thing)quasi-connectivity$(0) don't necessarily react immediately at all times. The mere presence of redstone power does not cause blocks to react; that happens through another mechanic called $(thing)block update$(0).$(p)Not all redstone-related block changes will cause a block update, for example activating a $(l:redstone/note_block)$(thing)note block$(0)$(/l) updates adjacent blocks, while activating a $(l:redstone/dropper)$(thing)dropper$(0)$(/l) does not.",
   "botania.page.quasiConnectivity3": "When a QC-compatible block gets powered via quasi-connectivity or stops being powered that way, but does not receive a block update, it can remain in its previous state until a block update causes it to change to the \"correct\" state.$(p)This disparity will be obvious with pistons, but can be hard to understand when it happens with a dropper or dispenser.",
 
+  "botania.entry.attach_support": "Attach Support",
+  "botania.tagline.attach_support": "Why can't I put this here?",
+  "botania.page.attach_support0": "While most blocks treat the laws of gravity merely as a suggestion, some blocks actually need to be attached to others. Different attached blocks need different amounts of $(thing)support$(0) from the block they are attached to, whether that's a side, the bottom, or the top of a block. The $(thing)support shape$(0) of a block can sometimes differ from how it looks, or how entities collide with it.",
+  "botania.page.attach_support1": "Some notable support shape exceptions:$(li)Honey blocks and leaves of any kind do not provide any support.$(li)Mud and soul sand $(bold)do$() provide full support on all sides, even though their collision shape is slightly lower than a full cube.$(li)Even though it may look like they do, $(thing)standing signs$(0) neither require nor provide (center) support.",
+  "botania.page.attach_support2": "Support types:$(li)$(bold)Full support$(): The entire side, top, or bottom face of the block cube must be available.$(li)$(bold)Rigid support$(): At least the outer edge of the top or bottom face of the block must be available. (like the top of a hopper or composter)$(li)$(bold)Center support$(): At least the center of the top or bottom face of the block must be available. (like an individual fence post)",
+  "botania.page.attach_support3": "Some examples:$(li)An individual scaffolding block requires full support from the block below, while rails or repeaters can also work with rigid support.$(li)Hanging signs attached to the bottom of a block needs at least center support. If it gets full support, the chains are parallel instead of in a V-shape.$(li)Floor torches only need center support, while wall torches need full support.",
+
   "botania.entry.gametick": "Ticks",
   "botania.tagline.gametick": "Like clockwork",
   "botania.page.gametick0": "Seconds are often not precise enough when talking about the timing of redstone components. Instead, a smaller time unit called $(thing)tick$(0) is introduced, with 20 ticks corresponding to one second.$(p)Durations shorter than one tick are not observable. When multiple events happen within the same tick, they still happen in some specific order, just not simultaneously.",
@@ -3781,7 +3788,7 @@
 
   "botania.entry.pressure_plate": "Pressure Plate",
   "botania.tagline.pressure_plate": "Watch your step",
-  "botania.page.pressure_plate0": "Pressure plates are simple $(thing)redstone components$(0) for detecting entities. They can be placed on any block that provides support at least in the center or entire outside edge, and $(l:redstone/redstone_wire)$(item)redstone wire$(0)$(/l) connects to them.$(p)When activated, a pressure plate emits a $(l:redstone/redstone_signal)$(thing)redstone signal$(0)$(/l) in all directions and also powers the block it is placed on.",
+  "botania.page.pressure_plate0": "Pressure plates are simple $(thing)redstone components$(0) for detecting entities. They can be placed on any block that provides center or rigid $(l:redstone/attach_support)$(thing)support$(0)$(/l), and $(l:redstone/redstone_wire)$(item)redstone wire$(0)$(/l) connects to them.$(p)When activated, a pressure plate emits a $(l:redstone/redstone_signal)$(thing)redstone signal$(0)$(/l) in all directions and also powers the block it is placed on.",
   "botania.page.pressure_plate1": "Wooden and weighted pressure plates are activated from any entity touching them, stone pressure plates only from living things and armor stands.$(p)Wooden and stone pressure plates will stay active until no relevant entity touches it anymore, but at least for 1 second, and emit signal strength 15 during that time.",
   "botania.page.pressure_plate2": "Weighted pressure plates stay active for at least 0.5 seconds and emit a signal strength that depends on the number of entities touching the plate up to the maximum strength of 15.$(p)For a light weighted pressure plate, each entity increases the signal strength by 1.$(br)For a heavy weighted pressure plate, the signal strength increases by 1 every 10 entities. Stackable items are counted per stack.",
   "botania.page.pressure_plate_crafting": "Crafting pressure plates",
@@ -3790,6 +3797,21 @@
   "botania.tagline.redstone_block": "The power cube",
   "botania.page.redstone_block0": "The $(item)Redstone Block$(0) is among the very few blocks that are a full, solid, and opaque cube, but not a $(l:redstone/redstone_signal)$(thing)redstone conductor$(0)$(/l). It always emits signal strength 15 on all sides, but does not power any adjacent blocks directly.$(p)Redstone blocks can be moved by $(l:redstone/piston)$(item)pistons$(0)$(/l), but watch out for $(l:redstone/quasi_connectivity)$(thing)quasi connectivity$(0)$(/l) when pushing upwards.",
   "botania.page.redstone_block_crafting": "Batteries included",
+
+  "botania.entry.detector_rail": "Detector Rail",
+  "botania.tagline.detector_rail": "Detection on rails",
+  "botania.page.detector_rail0": "The $(item)Detector Rail$(0) is a $(thing)redstone components$(0) that combines a minecart rail with the functionality of a pressure plate. It can be placed on any block that provides $(l:redstone/attach_support)$(thing)rigid support$(0)$(/l), and $(l:redstone/redstone_wire)$(item)redstone wire$(0)$(/l) connects to it.$(p)When activated, a detector rail emits $(l:redstone/redstone_signal)$(thing)signal strength$(0)$(/l) 15 in all directions and also powers the block it is placed on.",
+  "botania.page.detector_rail1": "A detector rail activates when a minecart overlaps with it, and stays active until there are no overlapping minecarts anymore, but for at least 1 second.$(p)Additionally, a $(l:redstone/comparator)$(item)Redstone Comparator$(0)$(/l) can be used to read the fill level of any container minecart currently passing over the detector rail. The comparator output is the same as for the block version of the minecart's container.",
+  "botania.page.detector_rail_crafting": "A six-pack of cartstone",
+
+  "botania.entry.tripwire_hook": "Tripwire Hook",
+  "botania.tagline.tripwire_hook": "Trippy traps",
+  "botania.page.tripwire_hook0": "$(item)Tripwire Hooks$(0) are a $(thing)redstone component$(0) that is almost exclusively used in a multi-block configuration. They can only be attached to any vertical full face of a block and adjacent $(l:redstone/redstone_wire)$(item)redstone wire$(0)$(/l) connects to them.$(p)When activated, the tripwire hook emits a $(l:redstone/redstone_signal)$(thing)redstone signal$(0)$(/l) of strength 15 in all directions and also powers the block it is attached to.",
+  "botania.page.tripwire_hook_crafting": "Crafting tripwire hooks",
+  "botania.page.tripwire_hook1": "A single tripwire hook cannot activate on its own, it needs to be part of a $(thing)tripwire circuit$(0). Such a circuit consists of a pair of tripwire hooks attached to blocks on opposing walls, such that they face each other. The space between the hooks is filled with a line of string, which must be between 1 and 40 blocks long. Tripwire lines can cross each other, sharing pieces of string.",
+  "botania.page.tripwire_hook2_title": "Tripwire Setup",
+  "botania.page.tripwire_hook2_description": "A bit like a cross between a hammock and a pressure plate, except you can't rest on it and it's harder to see.",
+  "botania.page.tripwire_hook3": "Once set up, a tripwire setup will trigger either when an entity touches the string, or when a part of the string is broken without using $(item)shears$(0). Once triggered, the hooks on either site activate for as long as entities touch any part of the tripwire, but at least for 0.5 seconds.",
 
 
   "botania.subtitle.agricarnation": "Agricarnation glimmers",

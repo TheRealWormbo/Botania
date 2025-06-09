@@ -1,0 +1,43 @@
+{
+  "name": "botania.entry.tripwire_hook",
+  "category": "botania:redstone",
+  "icon": "minecraft:tripwire_hook",
+  "pages": [
+    {
+      "type": "text",
+      "text": "botania.page.tripwire_hook0"
+    },
+    {
+      "type": "crafting",
+      "text": "botania.page.tripwire_hook_crafting",
+      "recipe": "minecraft:tripwire_hook"
+    },
+    {
+      "type": "text",
+      "text": "botania.page.tripwire_hook1"
+    },
+    {
+      "type": "multiblock",
+      "name": "botania.page.tripwire_hook2_title",
+      "multiblock": {
+        "mapping": {
+          "0": "minecraft:tripwire[attached=true,north=true,south=true]",
+          "S": "minecraft:tripwire[attached=true,north=true,south=true]",
+          "A": "minecraft:polished_andesite",
+          "L": "minecraft:tripwire_hook[attached=true,facing=south]",
+          "R": "minecraft:tripwire_hook[attached=true,facing=north]"
+        },
+        "pattern": [
+          [
+            "ALS0SRA"
+          ]
+        ]
+      },
+      "text": "botania.page.tripwire_hook2_description"
+    },
+    {
+      "type": "text",
+      "text": "botania.page.tripwire_hook3"
+    }
+  ]
+}
