@@ -3814,6 +3814,13 @@
   "botania.page.tripwire_hook3": "Once set up, a tripwire setup will trigger either when an entity touches the string, or when a part of the string is broken without using $(item)shears$(0). Once triggered, the hooks on either site activate for as long as entities touch any part of the tripwire, but at least for 0.5 seconds.",
 
 
+  "botania.entry.podzol": "Podzol",
+  "botania.tagline.podzol": "Wait, what!?",
+  "botania.page.podzol0": "Sometimes very specific situations arise that may require unconventional means to transfer information or detect a certain property or state. Such cases require \"thinking outside the box\" to take advantage of things that would usually not be categorized as $(thing)redstone components$(0).$(p)Like $(item)Podzol$(0).",
+  "botania.page.podzol1": "Consider a contraption to distinguish whether a bucket contains water, lava, or powder snow. Water is relatively easy, as an $(l:redstone/observer)$(item)observer$(0)$(/l) can detect when a block becomes waterlogged. A bucket of lava or powder snow drops into the world when dispensed this way.$(p)But how to distinguish lava and powder snow? Waiting for the lava to flow might be out of the question if this needs to happen quickly.",
+  "botania.page.podzol2": "The solution could be to dispense the bucket's contents on top of a block that becomes \"snowy\" when covered by powder snow, such as a $(item)Grass Block$(0). An $(l:redstone/observer)$(item)observer$(0)$(/l) can detect this change.$(p)However, grass can revert to dirt when covered by a liquid source. This would break the detector, as $(item)dirt$(0) does not become \"snowy\".$(br)The solution is to use $(item)Podzol$(0), as it will not revert.",
+  "botania.page.podzol3": "As a reminder:$(p)$(bold)Almost anything can become a redstone component, if you need it to be.$()",
+
   "botania.subtitle.agricarnation": "Agricarnation glimmers",
   "botania.subtitle.airRod": "Rod of the Skies whooshes",
   "botania.subtitle.altarCraft": "Petal Apothecary twinkles",

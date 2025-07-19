@@ -1,0 +1,24 @@
+{
+  "name": "botania.entry.podzol",
+  "category": "botania:redstone",
+  "icon": "minecraft:podzol",
+  "sortnum": 1000,
+  "pages": [
+    {
+      "type": "text",
+      "text": "botania.page.podzol0"
+    },
+    {
+      "type": "text",
+      "text": "botania.page.podzol1"
+    },
+    {
+      "type": "text",
+      "text": "botania.page.podzol2"
+    },
+    {
+      "type": "text",
+      "text": "botania.page.podzol3"
+    }
+  ]
+}
