@@ -76,9 +76,11 @@
     "ThrowableProjectileMixin",
     "VibrationSystemListenerMixin",
     "WitherEntityAccessor",
+    "client.BookEntryAccessor",
     "client.BookEntryMixin",
     "client.ClientAdvancementsAccessor",
-    "client.MultiblockVisualizationHandlerMixin"
+    "client.MultiblockVisualizationHandlerMixin",
+    "client.PageTextMixin"
   ],
   "client": [
     "client.AbstractClientPlayerMixin",
